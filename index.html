@@ -1077,11 +1077,21 @@ const DEFAULT_PRODS = [
   },
 ];
 
+/* ================================================================
+   DEFAULT CONFIG — berlaku di semua device tanpa perlu setup ulang
+   ✏️  Ganti nilai di sini jika nomor WA / Bin ID / API Key berubah.
+================================================================ */
+const DEFAULT_CFG = {
+  wa:    '083895912388',
+  binId: '6a2f5892f5f4af5e29f281cc',
+  key:   '$2a$10$eJTbvu.o.6SMCubYyK32A.jGZDi7Y/0ffV0V/7psvauWrwD689iJy',
+};
+
 /* ── JSONBIN HELPERS ── */
 const getCfg = () => ({
-  wa:    localStorage.getItem('mb_wa')  || '',
-  binId: localStorage.getItem('mb_bin') || '',
-  key:   localStorage.getItem('mb_key') || '',
+  wa:    localStorage.getItem('mb_wa')  || DEFAULT_CFG.wa,
+  binId: localStorage.getItem('mb_bin') || DEFAULT_CFG.binId,
+  key:   localStorage.getItem('mb_key') || DEFAULT_CFG.key,
 });
 
 const dbGet = async () => {
