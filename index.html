@@ -110,7 +110,7 @@ button { cursor: pointer; }
 .n-dtxt strong { display: block; font-size: 12.5px; font-weight: 500; margin-bottom: 1px; }
 .n-dtxt span { font-size: 10.5px; color: var(--text-light); }
 .n-here { margin-left: auto; font-family: 'Josefin Sans',sans-serif; font-size: 7.5px; letter-spacing: 1px; text-transform: uppercase; background: rgba(44,85,40,.08); color: var(--matcha); padding: 2px 8px; border-radius: 100px; white-space: nowrap; }
-.n-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.n-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; margin-left: auto; }
 .store-pill { display: flex; align-items: center; gap: 5px; padding: 5px 12px; border-radius: 100px; background: #e6f4e3; border: 1px solid rgba(44,85,40,.14); font-family: 'Josefin Sans', sans-serif; font-size: 10px; color: var(--matcha); letter-spacing: .5px; white-space: nowrap; transition: all .3s; }
 .store-pill.closed { background: var(--red-bg); border-color: rgba(197,48,48,.18); color: var(--red); }
 .s-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--matcha); flex-shrink: 0; animation: sdot 2s ease-in-out infinite; }
@@ -122,11 +122,11 @@ button { cursor: pointer; }
 .cart-badge.on { transform: scale(1); }
 .cart-badge.bump { animation: cbump .3s cubic-bezier(.16,1,.3,1); }
 @keyframes cbump { 0%,100%{transform:scale(1);} 50%{transform:scale(1.6);} }
-.hamburger { display: none; flex-direction: column; gap: 5px; padding: 4px; }
-.hamburger span { display: block; width: 22px; height: 1.5px; background: var(--matcha-d); border-radius: 2px; transition: all .3s; transform-origin: center; }
-.hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.hamburger { display: none; flex-direction: column; justify-content: center; align-items: center; gap: 5px; width: 36px; height: 36px; padding: 0; flex-shrink: 0; }
+.hamburger span { display: block; width: 22px; height: 2px; background: var(--matcha-d); border-radius: 2px; transition: all .3s; transform-origin: center; }
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-.hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 /* ============================================================
    6. MOBILE MENU
@@ -517,45 +517,108 @@ footer { background: var(--matcha-xl); color: rgba(255,255,255,.6); padding: cla
 .d3 { transition-delay: .24s; } .d4 { transition-delay: .32s; }
 
 /* ============================================================
-   22. RESPONSIVE
+   22. RESPONSIVE — PERBAIKAN MOBILE
 ============================================================ */
+
+/* ---- 1100px ---- */
 @media (max-width: 1100px) {
   .hero { padding-top: calc(var(--nav-h) + 56px); }
   .feat-grid { grid-template-columns: 1fr; }
   .f-grid { grid-template-columns: 1fr 1fr; }
   .rev-card { min-width: calc(50% - 11px); }
 }
+
+/* ---- 900px ---- */
 @media (max-width: 900px) {
   .about-grid { grid-template-columns: 1fr; }
   .about-vis { display: none; }
 }
+
+/* ---- 768px — MOBILE BREAKPOINT UTAMA ---- */
 @media (max-width: 768px) {
-  .n-center, .n-right .store-pill { display: none; }
+
+  /* NAV */
+  #nav { padding: 0 16px; gap: 0; }
+  .n-center { display: none; }
+  .n-right .store-pill { display: none; }
+  .n-logo-txt { font-size: 16px; }
+  .n-logo-sq { width: 28px; height: 28px; }
+  .n-right { gap: 8px; margin-left: auto; }
+
+  /* HAMBURGER — pastikan tampil dan rapi */
   .hamburger { display: flex; }
-  .hero { grid-template-columns: 1fr; text-align: center; }
+
+  /* HERO */
+  .hero { grid-template-columns: 1fr; text-align: center; padding-left: 20px; padding-right: 20px; }
   .hero-right { display: none; }
   .h-tag, .h-p { margin-left: auto; margin-right: auto; }
   .h-actions { justify-content: center; }
   .h-scroll { display: none; }
-  .prod-grid { grid-template-columns: 1fr 1fr !important; }
+
+  /* PRODUK GRID */
+  .prod-grid,
+  .prod-grid.p1,
+  .prod-grid.p2,
+  .prod-grid.p3 { grid-template-columns: 1fr 1fr !important; }
+
+  /* PRODUK IMAGE — jangan terlalu besar di mobile */
+  .prod-img-a { height: 160px; font-size: 52px; }
+
+  /* CART DRAWER — full width di mobile */
+  #cartDrawer { width: 100vw; }
+  .cd-head { padding: 16px 20px; }
+  .cd-items { -webkit-overflow-scrolling: touch; }
+  .cd-form { padding: 14px 20px; }
+  .cd-foot { padding: 14px 20px; }
+  .cd-item { padding: 12px 20px; gap: 10px; }
+
+  /* BRAND */
   .brand-cards { grid-template-columns: 1fr; }
+
+  /* FOOTER */
   .f-grid { grid-template-columns: 1fr; gap: 28px; }
   .f-bottom { justify-content: center; text-align: center; }
+
+  /* REVIEW */
   .rev-card { min-width: 100%; }
   .rf-row { grid-template-columns: 1fr; }
+
+  /* TOAST */
   .toast { right: 12px; bottom: 12px; left: 12px; max-width: none; text-align: center; }
+
+  /* ADMIN */
   .adm-modal { border-radius: var(--r-lg) var(--r-lg) 0 0; max-height: 95vh; }
   #adminOverlay { align-items: flex-end; padding: 0; }
 }
+
+/* ---- 560px ---- */
 @media (max-width: 560px) {
-  .prod-grid { grid-template-columns: 1fr !important; }
+  .prod-grid,
+  .prod-grid.p1,
+  .prod-grid.p2,
+  .prod-grid.p3 { grid-template-columns: 1fr !important; }
+
+  /* Image satu kolom — bisa lebih tinggi lagi */
+  .prod-img-a { height: 200px; font-size: 64px; }
+
   .stats-grid { grid-template-columns: 1fr 1fr; }
   .pass-btns { grid-template-columns: 1fr; }
+
+  /* Cart di layar sangat kecil */
+  .cd-item { gap: 8px; }
+  .cdi-name { font-size: 12px; }
+  .qty-btn { width: 24px; height: 24px; }
+  .qty-n { width: 22px; font-size: 13px; }
 }
+
+/* ---- 380px ---- */
 @media (max-width: 380px) {
+  #nav { padding: 0 12px; }
+  .n-logo-txt { font-size: 14px; }
   .h-actions { flex-direction: column; align-items: center; }
   .h-actions button { width: 100%; text-align: center; }
   .stats-grid { grid-template-columns: 1fr; }
+  .prod-img-a { height: 180px; }
 }
 
 </style>
@@ -988,16 +1051,6 @@ footer { background: var(--matcha-xl); color: rgba(255,255,255,.6); padding: cla
 /* ================================================================
    CONFIG
    ✏️  Edit DEFAULT_PRODS di sini untuk ubah/tambah produk.
-   Field:
-     id      : angka unik (jangan duplikat)
-     name    : nama produk
-     desc    : deskripsi singkat
-     price   : harga dalam Rupiah (angka)
-     emoji   : emoji fallback jika tidak ada foto
-     bg      : class gradien (bg1–bg5)
-     avail   : true = tersedia, false = habis
-     image   : nama file foto (taruh di folder sama dengan HTML ini),
-               contoh: 'pure-matcha.jpg'  — kosongkan '' jika pakai emoji
 ================================================================ */
 const ADMIN_PASS = '89898989';
 
@@ -1010,7 +1063,7 @@ const DEFAULT_PRODS = [
     emoji: '🍵',
     bg: 'bg1',
     avail: true,
-    image: 'productone.png'   // contoh: 'pure-matcha.jpg'
+    image: 'productone.png'
   },
   {
     id: 2,
@@ -1020,11 +1073,11 @@ const DEFAULT_PRODS = [
     emoji: '☕',
     bg: 'bg2',
     avail: true,
-    image: 'productthree.png'   
+    image: 'productthree.png'
   },
 ];
 
-/* ── JSONBIN HELPERS — hanya untuk orders & reviews ── */
+/* ── JSONBIN HELPERS ── */
 const getCfg = () => ({
   wa:    localStorage.getItem('mb_wa')  || '',
   binId: localStorage.getItem('mb_bin') || '',
@@ -1043,7 +1096,6 @@ const dbGet = async () => {
   } catch { return null; }
 };
 
-/* Hanya simpan reviews & orders ke JSONBin */
 const dbSet = async (reviews, orders) => {
   const c = getCfg();
   if (!c.binId || !c.key) return false;
@@ -1057,7 +1109,6 @@ const dbSet = async (reviews, orders) => {
   } catch { return false; }
 };
 
-/* Buat bin baru otomatis jika belum ada */
 const dbCreate = async () => {
   const c = getCfg();
   if (!c.key) return null;
@@ -1074,7 +1125,6 @@ const dbCreate = async () => {
 };
 
 /* ── STATE ── */
-/* Produk selalu dari DEFAULT_PRODS — tidak disimpan di DB */
 const st = {
   prods: JSON.parse(JSON.stringify(DEFAULT_PRODS)),
   reviews: [],
@@ -1086,7 +1136,6 @@ const st = {
 const lsG = k => { try { return localStorage.getItem(k); } catch { return null; } };
 const lsS = (k, v) => { try { localStorage.setItem(k, v); } catch {} };
 
-/* Hanya simpan reviews, orders, dan storeOpen ke localStorage */
 const saveLocal = () => {
   lsS('mb_revs',   JSON.stringify(st.reviews));
   lsS('mb_orders', JSON.stringify(st.orders));
@@ -1094,7 +1143,6 @@ const saveLocal = () => {
 };
 
 const loadLocal = () => {
-  /* Produk selalu dari DEFAULT_PRODS, tapi pertahankan status avail dari localStorage */
   const savedAvail = JSON.parse(lsG('mb_avail') || '{}');
   st.prods = DEFAULT_PRODS.map(p => ({
     ...p,
@@ -1106,7 +1154,6 @@ const loadLocal = () => {
   st.storeOpen = (o === null) ? true : (o === 'true');
 };
 
-/* Simpan status avail tiap produk supaya persist saat reload */
 const saveAvail = () => {
   const avail = {};
   st.prods.forEach(p => avail[p.id] = p.avail);
@@ -1117,7 +1164,6 @@ const saveAvail = () => {
 const fmtRp = n => 'Rp ' + n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 const colCls = n => n === 1 ? ' p1' : n === 2 ? ' p2' : n === 3 ? ' p3' : '';
 
-/* Render gambar produk: kalau ada path file pakai <img>, kalau tidak pakai emoji */
 const prodImgHTML = p => p.image
   ? `<img src="${p.image}" alt="${p.name}" loading="lazy">`
   : p.emoji;
@@ -1143,7 +1189,6 @@ const renderProds = () => {
     </div>`).join('');
   initReveal();
   initTilt();
-  /* Sync product options ke form ulasan */
   const sel = document.getElementById('rfProd');
   sel.innerHTML = '<option value="">Pilih produk...</option>' +
     st.prods.map(p => `<option>${p.name}</option>`).join('');
@@ -1358,7 +1403,7 @@ const submitReview = async () => {
   showToast('⭐ Terima kasih atas ulasannya!');
 };
 
-/* ── HIDDEN ADMIN — klik logo 5x ── */
+/* ── HIDDEN ADMIN ── */
 let taps = 0, tapT = null;
 document.getElementById('navLogo').addEventListener('click', e => {
   e.preventDefault();
@@ -1411,7 +1456,6 @@ const switchTab = (name, btn) => {
   btn.classList.add('on');
 };
 
-/* ── ADMIN: PRODUK — hanya toggle stok, tanpa upload foto ── */
 const renderAdmProds = () => {
   const el = document.getElementById('admProdList');
   el.innerHTML = st.prods.map(p => `
@@ -1443,7 +1487,6 @@ const toggleProd = (id, v) => {
   if (l) l.textContent = v ? 'Ada' : 'Habis';
 };
 
-/* ── ADMIN: PESANAN ── */
 const renderAdmOrders = () => {
   const el = document.getElementById('admOrders');
   if (!st.orders.length) { el.innerHTML = '<div class="adm-empty">Belum ada pesanan</div>'; return; }
@@ -1459,7 +1502,6 @@ const renderAdmOrders = () => {
     </div>`).join('');
 };
 
-/* ── ADMIN: ULASAN ── */
 const renderAdmRevs = () => {
   const el = document.getElementById('admRevs');
   if (!st.reviews.length) { el.innerHTML = '<div class="adm-empty">Belum ada ulasan</div>'; return; }
@@ -1484,7 +1526,6 @@ const delRev = async id => {
   showToast(ok ? '✓ Ulasan dihapus & tersync' : '✓ Ulasan dihapus (lokal)');
 };
 
-/* ── ADMIN: PENGATURAN ── */
 const loadSettUI = () => {
   const c = getCfg();
   document.getElementById('settWA').value  = c.wa;
@@ -1525,7 +1566,6 @@ const testConnection = async () => {
 };
 
 const saveAll = async () => {
-  /* Simpan status avail produk ke localStorage */
   saveAvail();
   saveLocal();
   applyUI();
@@ -1616,14 +1656,12 @@ async function init() {
   initCounters();
   updCartUI();
 
-  /* Ambil reviews & orders dari JSONBin — produk TIDAK diambil dari DB */
   const data = await dbGet();
   if (data) {
     if (Array.isArray(data.reviews)) st.reviews = data.reviews;
     if (Array.isArray(data.orders))  st.orders  = data.orders;
     saveLocal();
     renderReviews();
-    renderAdmOrders && null; /* akan dirender saat admin dibuka */
   }
 
   setTimeout(() => document.getElementById('loader').classList.add('gone'), 3000);
