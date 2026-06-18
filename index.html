@@ -53,33 +53,11 @@ button { cursor: pointer; }
   --sh-xl: 0 32px 80px rgba(0,0,0,.16);
 }
 
-/* Wide monitors */
-@media (min-width: 1600px) {
-  :root {
-    --pad-x: 100px;
-    --pad-y: 120px;
-  }
-}
-
-/* Tablet landscape */
-@media (max-width: 1100px) {
-  :root { --nav-h: 64px; }
-}
-
-/* Tablet portrait & small laptop */
-@media (max-width: 900px) {
-  :root { --nav-h: 62px; --pad-x: clamp(16px, 4vw, 40px); }
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-  :root { --nav-h: 58px; --pad-x: 16px; }
-}
-
-/* Small mobile */
-@media (max-width: 400px) {
-  :root { --nav-h: 54px; --pad-x: 12px; }
-}
+@media (min-width: 1600px) { :root { --pad-x: 100px; --pad-y: 120px; } }
+@media (max-width: 1100px) { :root { --nav-h: 64px; } }
+@media (max-width: 900px)  { :root { --nav-h: 62px; --pad-x: clamp(16px, 4vw, 40px); } }
+@media (max-width: 768px)  { :root { --nav-h: 58px; --pad-x: 16px; } }
+@media (max-width: 400px)  { :root { --nav-h: 54px; --pad-x: 12px; } }
 
 /* ============================================================
    3. SCROLL PROGRESS BAR
@@ -225,7 +203,6 @@ button { cursor: pointer; }
 .hero { min-height: 100svh; min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; padding: calc(var(--nav-h) + clamp(40px,7vw,80px)) var(--pad-x) clamp(40px,7vw,80px); gap: var(--gap); position: relative; overflow: hidden; }
 .hero-bg { position: absolute; inset: 0; background: linear-gradient(-45deg,#eef8eb,#fdfcf8,#e6f5e2,#f5fcf2,#fdfcf8); background-size: 400% 400%; animation: hBg 15s ease infinite; z-index: 0; transition: opacity .5s; }
 .hero-bg.has-media { opacity: 0; }
-/* Hero custom media */
 .hero-media { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
 .hero-media img, .hero-media video { width: 100%; height: 100%; object-fit: cover; }
 .hero-media-overlay { position: absolute; inset: 0; background: rgba(0,0,0,.38); }
@@ -549,11 +526,9 @@ footer { background: var(--matcha-xl); color: rgba(255,255,255,.6); padding: cla
 .htype-btn { padding: 7px 14px; border-radius: var(--r-sm); font-family: 'Josefin Sans', sans-serif; font-size: 9.5px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; border: 1.5px solid var(--gray-d); color: var(--text-mid); transition: all .2s; }
 .htype-btn.on { background: var(--matcha); color: #fff; border-color: var(--matcha); }
 
-/* ── Hero BG upload status ── */
-.hero-upload-status { background: var(--warm); border: 1px solid var(--gray-d); border-radius: var(--r-sm); padding: 12px 14px; margin-bottom: 10px; font-size: 12px; color: var(--text-mid); display: none; }
-.hero-upload-status.show { display: block; }
-.hero-upload-bar { height: 4px; background: var(--gray-d); border-radius: 4px; margin-top: 8px; overflow: hidden; }
-.hero-upload-bar-fill { height: 100%; background: var(--matcha-l); border-radius: 4px; transition: width .3s; width: 0; }
+/* ── Hero path hint ── */
+.hero-path-hint { font-size: 11.5px; color: var(--text-mid); line-height: 1.65; margin-bottom: 12px; background: var(--warm); padding: 10px 14px; border-radius: var(--r-sm); border: 1px solid var(--gray-d); }
+.hero-path-hint code { background: rgba(0,0,0,.06); padding: 1px 5px; border-radius: 3px; font-family: monospace; font-size: 11px; }
 
 /* ============================================================
    20. TOAST
@@ -572,151 +547,21 @@ footer { background: var(--matcha-xl); color: rgba(255,255,255,.6); padding: cla
 .d3 { transition-delay: .24s; } .d4 { transition-delay: .32s; }
 
 /* ============================================================
-   22. RESPONSIVE — Full coverage
+   22. RESPONSIVE
 ============================================================ */
-
-/* ── 1400px wide screens ── */
-@media (min-width: 1400px) {
-  .prod-grid.p2 { grid-template-columns: repeat(2, minmax(0,440px)); }
-  .hero { min-height: 95vh; }
-}
-
-/* ── 1100px tablet landscape ── */
-@media (max-width: 1100px) {
-  .hero { padding-top: calc(var(--nav-h) + 48px); }
-  .feat-grid { grid-template-columns: 1fr; }
-  .f-grid { grid-template-columns: 1fr 1fr; }
-  .rev-card { min-width: calc(50% - 11px); }
-  .about-grid { gap: clamp(24px,4vw,48px); }
-}
-
-/* ── 900px tablet portrait ── */
-@media (max-width: 900px) {
-  .about-grid { grid-template-columns: 1fr; }
-  .about-vis { display: none; }
-  .feat-grid { grid-template-columns: 1fr 1fr; }
-  .prod-grid.p3 { grid-template-columns: repeat(2,1fr); }
-  .f-grid { grid-template-columns: 1fr 1fr; }
-  .hero { grid-template-columns: 1fr; text-align: center; padding-bottom: clamp(48px,8vw,80px); }
-  .hero-right { display: none; }
-  .h-tag, .h-p { margin-left: auto; margin-right: auto; }
-  .h-actions { justify-content: center; }
-  .h1 { font-size: clamp(32px,6vw,52px); }
-}
-
-/* ── 768px mobile ── */
-@media (max-width: 768px) {
-  #nav { padding: 0 16px; gap: 0; }
-  .n-center { display: none; }
-  .n-right .store-pill { display: none; }
-  .n-logo-txt { font-size: 16px; }
-  .n-logo-sq { width: 28px; height: 28px; }
-  .n-right { gap: 8px; margin-left: auto; }
-  .hamburger { display: flex; }
-  .h-scroll { display: none; }
-  .prod-grid, .prod-grid.p1, .prod-grid.p2, .prod-grid.p3 { grid-template-columns: 1fr 1fr !important; }
-  .prod-img-a { height: 160px; font-size: 52px; }
-  #cartDrawer { width: 100vw; }
-  .cd-head { padding: 16px 20px; }
-  .cd-form { padding: 14px 20px; }
-  .cd-foot { padding: 14px 20px; }
-  .cd-item { padding: 12px 20px; gap: 10px; }
-  .brand-cards { grid-template-columns: 1fr; }
-  .f-grid { grid-template-columns: 1fr; gap: 28px; }
-  .f-bottom { justify-content: center; text-align: center; }
-  .rev-card { min-width: 100%; }
-  .rf-row { grid-template-columns: 1fr; }
-  .toast { right: 12px; bottom: 12px; left: 12px; max-width: none; text-align: center; }
-  .adm-modal { border-radius: var(--r-lg) var(--r-lg) 0 0; max-height: 95vh; }
-  #adminOverlay { align-items: flex-end; padding: 0; }
-  .hero-type-btns { gap: 6px; }
-  .htype-btn { padding: 6px 11px; font-size: 9px; }
-  .feat-grid { grid-template-columns: 1fr; }
-  .stats-grid { grid-template-columns: 1fr 1fr; }
-  .hero { min-height: 100svh; }
-}
-
-/* ── 560px small mobile ── */
-@media (max-width: 560px) {
-  .prod-grid, .prod-grid.p1, .prod-grid.p2, .prod-grid.p3 { grid-template-columns: 1fr !important; }
-  .prod-img-a { height: 200px; font-size: 64px; }
-  .pass-btns { grid-template-columns: 1fr; }
-  .cd-item { gap: 8px; }
-  .cdi-name { font-size: 12px; }
-  .qty-btn { width: 24px; height: 24px; }
-  .qty-n { width: 22px; font-size: 13px; }
-  .sett-btns { flex-direction: column; }
-  .btn-sett { text-align: center; }
-  .rf-wrap { padding: 18px; }
-  .h1 { font-size: clamp(30px,8vw,44px); letter-spacing: -1px; }
-}
-
-/* ── 400px very small ── */
-@media (max-width: 400px) {
-  #nav { padding: 0 12px; }
-  .n-logo-txt { font-size: 14px; }
-  .h-actions { flex-direction: column; align-items: center; }
-  .h-actions button { width: 100%; text-align: center; max-width: 280px; }
-  .stats-grid { grid-template-columns: 1fr; }
-  .prod-img-a { height: 180px; }
-  .cd-head-left h2 { font-size: 19px; }
-  .adm-tabs { padding: 0 8px; }
-  .adm-tab { padding: 11px 10px; font-size: 8.5px; letter-spacing: 1px; }
-  .mob-inner { padding: 8px 16px 28px; }
-}
-
-/* ── 320px minimum support ── */
-@media (max-width: 320px) {
-  :root { --pad-x: 10px; }
-  .n-logo-txt { display: none; }
-  .h1 { font-size: 26px; }
-  .prod-img-a { height: 160px; font-size: 52px; }
-}
-
-/* ── Tall screens / phone landscape ── */
-@media (max-height: 500px) and (orientation: landscape) {
-  .hero { min-height: auto; padding-top: calc(var(--nav-h) + 24px); padding-bottom: 24px; }
-  .hv { width: 160px; height: 160px; }
-  .hv-cup { font-size: 60px; }
-  .h-scroll { display: none; }
-}
-
-/* ── iPad Pro & large tablets ── */
-@media (min-width: 768px) and (max-width: 1024px) {
-  .feat-grid { grid-template-columns: 1fr 1fr; }
-  .prod-grid.p3 { grid-template-columns: repeat(2,1fr); }
-  .hero { grid-template-columns: 1fr 1fr; }
-  .hero-right { display: flex; }
-  .h1 { font-size: clamp(30px,4.5vw,52px); }
-}
-
-/* ── Foldable & narrow screens ── */
-@media (max-width: 280px) {
-  :root { --pad-x: 8px; --nav-h: 50px; }
-  .n-logo-txt { display: none; }
-  .n-logo-sq { width: 24px; height: 24px; }
-  .cart-btn { width: 30px; height: 30px; }
-}
-
-/* ── Print ── */
-@media print {
-  #nav, #loader, #scrollBar, #cartBg, #cartDrawer, #closedBanner,
-  #passOverlay, #adminOverlay, .toast, .hamburger, #mobMenu { display: none !important; }
-  .hero { min-height: auto; }
-  body { background: white; }
-}
-
-/* ── Hover media query for touch devices ── */
-@media (hover: none) {
-  .prod-card:hover { box-shadow: none; transform: none; }
-  .brand-card:hover { transform: none; box-shadow: none; }
-  .stat-card:hover { transform: none; }
-}
-
-/* ── High DPI / Retina ── */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-  .n-logo-sq, .cart-btn { -webkit-font-smoothing: antialiased; }
-}
+@media (min-width: 1400px) { .prod-grid.p2 { grid-template-columns: repeat(2, minmax(0,440px)); } .hero { min-height: 95vh; } }
+@media (max-width: 1100px) { .hero { padding-top: calc(var(--nav-h) + 48px); } .feat-grid { grid-template-columns: 1fr; } .f-grid { grid-template-columns: 1fr 1fr; } .rev-card { min-width: calc(50% - 11px); } .about-grid { gap: clamp(24px,4vw,48px); } }
+@media (max-width: 900px) { .about-grid { grid-template-columns: 1fr; } .about-vis { display: none; } .feat-grid { grid-template-columns: 1fr 1fr; } .prod-grid.p3 { grid-template-columns: repeat(2,1fr); } .f-grid { grid-template-columns: 1fr 1fr; } .hero { grid-template-columns: 1fr; text-align: center; padding-bottom: clamp(48px,8vw,80px); } .hero-right { display: none; } .h-tag, .h-p { margin-left: auto; margin-right: auto; } .h-actions { justify-content: center; } .h1 { font-size: clamp(32px,6vw,52px); } }
+@media (max-width: 768px) { #nav { padding: 0 16px; gap: 0; } .n-center { display: none; } .n-right .store-pill { display: none; } .n-logo-txt { font-size: 16px; } .n-logo-sq { width: 28px; height: 28px; } .n-right { gap: 8px; margin-left: auto; } .hamburger { display: flex; } .h-scroll { display: none; } .prod-grid, .prod-grid.p1, .prod-grid.p2, .prod-grid.p3 { grid-template-columns: 1fr 1fr !important; } .prod-img-a { height: 160px; font-size: 52px; } #cartDrawer { width: 100vw; } .cd-head { padding: 16px 20px; } .cd-form { padding: 14px 20px; } .cd-foot { padding: 14px 20px; } .cd-item { padding: 12px 20px; gap: 10px; } .brand-cards { grid-template-columns: 1fr; } .f-grid { grid-template-columns: 1fr; gap: 28px; } .f-bottom { justify-content: center; text-align: center; } .rev-card { min-width: 100%; } .rf-row { grid-template-columns: 1fr; } .toast { right: 12px; bottom: 12px; left: 12px; max-width: none; text-align: center; } .adm-modal { border-radius: var(--r-lg) var(--r-lg) 0 0; max-height: 95vh; } #adminOverlay { align-items: flex-end; padding: 0; } .hero-type-btns { gap: 6px; } .htype-btn { padding: 6px 11px; font-size: 9px; } .feat-grid { grid-template-columns: 1fr; } .stats-grid { grid-template-columns: 1fr 1fr; } .hero { min-height: 100svh; } }
+@media (max-width: 560px) { .prod-grid, .prod-grid.p1, .prod-grid.p2, .prod-grid.p3 { grid-template-columns: 1fr !important; } .prod-img-a { height: 200px; font-size: 64px; } .pass-btns { grid-template-columns: 1fr; } .cd-item { gap: 8px; } .cdi-name { font-size: 12px; } .qty-btn { width: 24px; height: 24px; } .qty-n { width: 22px; font-size: 13px; } .sett-btns { flex-direction: column; } .btn-sett { text-align: center; } .rf-wrap { padding: 18px; } .h1 { font-size: clamp(30px,8vw,44px); letter-spacing: -1px; } }
+@media (max-width: 400px) { #nav { padding: 0 12px; } .n-logo-txt { font-size: 14px; } .h-actions { flex-direction: column; align-items: center; } .h-actions button { width: 100%; text-align: center; max-width: 280px; } .stats-grid { grid-template-columns: 1fr; } .prod-img-a { height: 180px; } .cd-head-left h2 { font-size: 19px; } .adm-tabs { padding: 0 8px; } .adm-tab { padding: 11px 10px; font-size: 8.5px; letter-spacing: 1px; } .mob-inner { padding: 8px 16px 28px; } }
+@media (max-width: 320px) { :root { --pad-x: 10px; } .n-logo-txt { display: none; } .h1 { font-size: 26px; } .prod-img-a { height: 160px; font-size: 52px; } }
+@media (max-height: 500px) and (orientation: landscape) { .hero { min-height: auto; padding-top: calc(var(--nav-h) + 24px); padding-bottom: 24px; } .hv { width: 160px; height: 160px; } .hv-cup { font-size: 60px; } .h-scroll { display: none; } }
+@media (min-width: 768px) and (max-width: 1024px) { .feat-grid { grid-template-columns: 1fr 1fr; } .prod-grid.p3 { grid-template-columns: repeat(2,1fr); } .hero { grid-template-columns: 1fr 1fr; } .hero-right { display: flex; } .h1 { font-size: clamp(30px,4.5vw,52px); } }
+@media (max-width: 280px) { :root { --pad-x: 8px; --nav-h: 50px; } .n-logo-txt { display: none; } .n-logo-sq { width: 24px; height: 24px; } .cart-btn { width: 30px; height: 30px; } }
+@media print { #nav, #loader, #scrollBar, #cartBg, #cartDrawer, #closedBanner, #passOverlay, #adminOverlay, .toast, .hamburger, #mobMenu { display: none !important; } .hero { min-height: auto; } body { background: white; } }
+@media (hover: none) { .prod-card:hover { box-shadow: none; transform: none; } .brand-card:hover { transform: none; box-shadow: none; } .stat-card:hover { transform: none; } }
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { .n-logo-sq, .cart-btn { -webkit-font-smoothing: antialiased; } }
 
 </style>
 </head>
@@ -1069,7 +914,7 @@ footer { background: var(--matcha-xl); color: rgba(255,255,255,.6); padding: cla
         <div class="adm-row">
           <div class="ar-i">
             <strong>Toko Online</strong>
-            <span>Matikan untuk tutup toko — produk otomatis tampil hitam putih. Status tersimpan ke database.</span>
+            <span>Matikan untuk tutup toko — produk otomatis tampil hitam putih.</span>
           </div>
           <label class="sw"><input type="checkbox" id="storeToggle" onchange="st.storeOpen=this.checked"><span class="sw-tr"></span></label>
         </div>
@@ -1097,35 +942,24 @@ footer { background: var(--matcha-xl); color: rgba(255,255,255,.6); padding: cla
         <div class="hero-bg-preview" id="heroBgPreview">
           <span class="prev-lbl" id="heroPrevLbl">Gradient Default</span>
         </div>
-
-        <!-- Status upload online -->
-        <div class="hero-upload-status" id="heroUploadStatus">
-          <span id="heroUploadStatusTxt">Mengupload ke database...</span>
-          <div class="hero-upload-bar"><div class="hero-upload-bar-fill" id="heroUploadBarFill"></div></div>
-        </div>
-
         <div class="hero-type-btns">
           <button class="htype-btn on" id="htype-gradient" onclick="setHeroType('gradient')">Gradient Default</button>
-          <button class="htype-btn" id="htype-url" onclick="setHeroType('url')">URL Foto/Video</button>
-          <button class="htype-btn" id="htype-upload" onclick="setHeroType('upload')">Upload File</button>
+          <button class="htype-btn" id="htype-file" onclick="setHeroType('file')">File Lokal</button>
         </div>
-        <div id="hero-url-block" style="display:none">
-          <label class="sett-lbl">URL Gambar atau Video</label>
-          <input class="sett-inp" type="text" id="heroUrlInp" placeholder="https://example.com/foto.jpg" oninput="previewHeroBg()">
-          <div class="sett-hint">Mendukung URL gambar (.jpg, .png, .webp) atau video (.mp4, .webm). URL akan disimpan ke database sehingga semua pengunjung bisa melihatnya.</div>
-        </div>
-        <div id="hero-upload-block" style="display:none">
-          <label class="sett-lbl">Upload Foto atau Video</label>
-          <input class="sett-inp" type="file" id="heroFileInp" accept="image/*,video/mp4,video/webm" onchange="handleHeroFile(this)" style="padding:8px 14px;cursor:pointer;">
-          <div class="sett-hint">⚠️ File upload disimpan sebagai base64 di database. Disarankan gunakan <strong>URL</strong> untuk file besar agar lebih cepat dimuat semua pengunjung. Ukuran maks ~4MB untuk upload.</div>
-          <div id="heroUploadInfo" style="font-size:11.5px;color:var(--text-light);margin-top:-4px;margin-bottom:12px;"></div>
+        <div id="hero-file-block" style="display:none">
+          <label class="sett-lbl">Nama / Path File</label>
+          <input class="sett-inp" type="text" id="heroPathInp" placeholder="hero.jpg  atau  assets/video.mp4" oninput="previewHeroPath()">
+          <div class="hero-path-hint">
+            📁 Taruh file foto/video <strong>satu folder</strong> dengan <code>index.html</code>, lalu ketik nama filenya di atas.<br>
+            Contoh: <code>hero.jpg</code> &nbsp;·&nbsp; <code>hero.png</code> &nbsp;·&nbsp; <code>hero.mp4</code> &nbsp;·&nbsp; <code>assets/bg.webm</code><br><br>
+            ✏️ <strong>Cara permanen lewat VSCode:</strong> Cari <code>const HERO_LOCAL</code> di bagian CONFIG, ganti nilainya.<br>
+            Contoh: <code>const HERO_LOCAL = 'hero.jpg';</code><br>
+            Untuk kembali ke gradient: <code>const HERO_LOCAL = '';</code>
+          </div>
         </div>
         <div class="sett-btns" style="margin-top:8px;">
-          <button class="btn-sett" onclick="saveHeroBg()">Terapkan & Simpan ke Database</button>
+          <button class="btn-sett" onclick="applyHeroLocal()">Terapkan (sesi ini)</button>
           <button class="btn-sett" style="background:var(--text-mid)" onclick="resetHeroBg()">Reset ke Default</button>
-        </div>
-        <div style="margin-top:12px;font-size:11.5px;color:var(--text-light);background:var(--warm);padding:10px 14px;border-radius:var(--r-sm);border:1px solid var(--gray-d);">
-          💡 <strong>Tips:</strong> Background yang disimpan ke database akan muncul untuk <strong>semua pengunjung</strong> dan tidak akan hilang saat reload. Gunakan URL publik untuk performa terbaik.
         </div>
       </div>
       <!-- Tab Pengaturan -->
@@ -1141,7 +975,7 @@ footer { background: var(--matcha-xl); color: rgba(255,255,255,.6); padding: cla
           <input class="sett-inp" type="text" id="settBin" placeholder="contoh: 6a2f5892f5f4af5e29f281cc">
           <label class="sett-lbl">Master API Key</label>
           <input class="sett-inp" type="password" id="settKey" placeholder="$2a$10$...">
-          <div class="sett-hint">JSONBin menyimpan pesanan, ulasan, status toko & hero background. Produk dikelola di kode (DEFAULT_PRODS).</div>
+          <div class="sett-hint">JSONBin menyimpan pesanan, ulasan & status toko. Produk & hero background dikelola di kode (VSCode).</div>
           <div class="sett-btns">
             <button class="btn-sett" onclick="saveSettings()">Simpan Pengaturan</button>
             <button class="btn-sett" style="background:var(--text-mid)" onclick="testConnection()">Test Koneksi</button>
@@ -1188,6 +1022,13 @@ footer { background: var(--matcha-xl); color: rgba(255,255,255,.6); padding: cla
    CONFIG
 ================================================================ */
 const ADMIN_PASS = '89898989';
+
+// ══════════════════════════════════════════════════════════════
+// HERO BACKGROUND — edit path di sini untuk set permanen via VSCode
+// Contoh: 'hero.jpg'  atau  'assets/bg.mp4'
+// Kosongkan string ('') untuk tampilkan gradient animasi default
+// ══════════════════════════════════════════════════════════════
+const HERO_LOCAL = '';
 
 const DEFAULT_PRODS = [
   {
@@ -1237,18 +1078,14 @@ const dbGet = async () => {
   } catch { return null; }
 };
 
-/* ── dbSet sekarang juga menyimpan heroBg ── */
-const dbSet = async (reviews, orders, storeOpen, heroBg) => {
+const dbSet = async (reviews, orders, storeOpen) => {
   const c = getCfg();
   if (!c.binId || !c.key) return false;
   try {
-    const payload = { reviews, orders, storeOpen };
-    // Simpan heroBg ke database jika ada
-    if (heroBg !== undefined) payload.heroBg = heroBg;
     const r = await fetch(`https://api.jsonbin.io/v3/b/${c.binId}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json', 'X-Master-Key': c.key },
-      body: JSON.stringify(payload)
+      body: JSON.stringify({ reviews, orders, storeOpen })
     });
     return r.ok;
   } catch { return false; }
@@ -1261,7 +1098,7 @@ const dbCreate = async () => {
     const r = await fetch('https://api.jsonbin.io/v3/b', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'X-Master-Key': c.key, 'X-Bin-Name': 'matcha-brocita' },
-      body: JSON.stringify({ reviews: [], orders: [], storeOpen: true, heroBg: null })
+      body: JSON.stringify({ reviews: [], orders: [], storeOpen: true })
     });
     if (!r.ok) return null;
     const d = await r.json();
@@ -1276,7 +1113,6 @@ const st = {
   orders: [],
   storeOpen: true,
   cart: [],
-  heroBg: null, // { type: 'gradient'|'url'|'upload', data: string|null }
   _submittingReview: false,
   _submittingOrder: false,
 };
@@ -1288,12 +1124,6 @@ const saveLocal = () => {
   lsS('mb_revs',   JSON.stringify(st.reviews));
   lsS('mb_orders', JSON.stringify(st.orders));
   lsS('mb_open',   String(st.storeOpen));
-  // Cache heroBg di localStorage juga untuk offline fallback
-  if (st.heroBg) {
-    try { lsS('mb_hero_cache', JSON.stringify(st.heroBg)); } catch(e) {}
-  } else {
-    lsS('mb_hero_cache', '');
-  }
 };
 
 const loadLocal = () => {
@@ -1306,11 +1136,6 @@ const loadLocal = () => {
   try { st.orders  = JSON.parse(lsG('mb_orders')) || []; } catch { st.orders  = []; }
   const o = lsG('mb_open');
   st.storeOpen = (o === null) ? true : (o === 'true');
-  // Load hero cache dari localStorage
-  try {
-    const hc = lsG('mb_hero_cache');
-    st.heroBg = hc ? JSON.parse(hc) : null;
-  } catch { st.heroBg = null; }
 };
 
 const saveAvail = () => {
@@ -1355,7 +1180,6 @@ const renderProds = () => {
 
 /* ── TILT ── */
 const initTilt = () => {
-  // Hanya aktifkan tilt pada perangkat dengan hover (bukan touchscreen)
   if (window.matchMedia('(hover: none)').matches) return;
   document.querySelectorAll('.prod-card:not(.unavail)').forEach(c => {
     c.addEventListener('mousemove', e => {
@@ -1461,7 +1285,7 @@ const closeCart = () => {
   document.body.style.overflow = '';
 };
 
-/* ── CHECKOUT — anti-duplikat ── */
+/* ── CHECKOUT ── */
 const WA_SVG = `<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>`;
 
 const checkoutWA = async () => {
@@ -1492,7 +1316,7 @@ const checkoutWA = async () => {
   };
   st.orders.unshift(ord);
   saveLocal();
-  const dbOk = await dbSet(st.reviews, st.orders, st.storeOpen, st.heroBg);
+  const dbOk = await dbSet(st.reviews, st.orders, st.storeOpen);
   if (!dbOk) {
     st.orders.shift();
     saveLocal();
@@ -1562,7 +1386,7 @@ setInterval(() => {
   goRevSlide((rIdx + 1) % Math.max(1, pages));
 }, 5500);
 
-/* ── SUBMIT REVIEW — anti-duplikat ── */
+/* ── SUBMIT REVIEW ── */
 const submitReview = async () => {
   if (st._submittingReview) return;
   const name    = document.getElementById('rfName').value.trim();
@@ -1583,7 +1407,7 @@ const submitReview = async () => {
   st.reviews.unshift(rev);
   saveLocal();
 
-  const ok = await dbSet(st.reviews, st.orders, st.storeOpen, st.heroBg);
+  const ok = await dbSet(st.reviews, st.orders, st.storeOpen);
   if (!ok) {
     st.reviews.shift();
     saveLocal();
@@ -1668,7 +1492,7 @@ const renderAdmProds = () => {
         <strong>${p.name}</strong>
         <span>${fmtRp(p.price)}</span>
         <span style="font-size:11px;color:var(--text-light);margin-top:4px;display:block">
-          ✏️ Edit di VS Code → <code style="background:var(--gray);padding:1px 5px;border-radius:3px">DEFAULT_PRODS</code>
+          ✏️ Edit di VSCode → <code style="background:var(--gray);padding:1px 5px;border-radius:3px">DEFAULT_PRODS</code>
         </span>
       </div>
       <div class="ap-r">
@@ -1688,7 +1512,6 @@ const toggleProd = (id, v) => {
   if (l) l.textContent = v ? 'Ada' : 'Habis';
 };
 
-/* ── ORDERS ── */
 const renderAdmOrders = () => {
   const el = document.getElementById('admOrders');
   if (!st.orders.length) { el.innerHTML = '<div class="adm-empty">Belum ada pesanan</div>'; return; }
@@ -1709,7 +1532,7 @@ const delOrder = async id => {
   if (!confirm('Hapus pesanan ini?')) return;
   st.orders = st.orders.filter(o => o.id !== id);
   saveLocal();
-  const ok = await dbSet(st.reviews, st.orders, st.storeOpen, st.heroBg);
+  const ok = await dbSet(st.reviews, st.orders, st.storeOpen);
   renderAdmOrders();
   showToast(ok ? '✓ Pesanan dihapus & tersync' : '✓ Pesanan dihapus (lokal)');
 };
@@ -1732,7 +1555,7 @@ const delRev = async id => {
   if (!confirm('Hapus ulasan ini?')) return;
   st.reviews = st.reviews.filter(r => r.id !== id);
   saveLocal();
-  const ok = await dbSet(st.reviews, st.orders, st.storeOpen, st.heroBg);
+  const ok = await dbSet(st.reviews, st.orders, st.storeOpen);
   renderAdmRevs();
   renderReviews();
   showToast(ok ? '✓ Ulasan dihapus & tersync' : '✓ Ulasan dihapus (lokal)');
@@ -1767,7 +1590,7 @@ const saveSettings = async () => {
   }
 
   showToast('⏳ Menyimpan...');
-  const ok = await dbSet(st.reviews, st.orders, st.storeOpen, st.heroBg);
+  const ok = await dbSet(st.reviews, st.orders, st.storeOpen);
   showToast(ok ? '✓ Tersimpan & terhubung ke JSONBin!' : '⚠️ Tidak bisa terhubung — cek Bin ID & API Key');
 };
 
@@ -1785,189 +1608,108 @@ const saveAll = async () => {
   renderReviews();
   closeAdmin();
   showToast('⏳ Menyimpan...');
-  const ok = await dbSet(st.reviews, st.orders, st.storeOpen, st.heroBg);
+  const ok = await dbSet(st.reviews, st.orders, st.storeOpen);
   showToast(ok ? '✓ Tersimpan ke database JSONBin!' : '✓ Tersimpan lokal (database offline)');
 };
 
 /* ================================================================
-   HERO BACKGROUND — disimpan ke JSONBin agar semua pengunjung bisa lihat
+   HERO BACKGROUND — pakai file lokal (tidak perlu database / upload)
+
+   Cara pakai:
+   1. Taruh file foto/video satu folder dengan index.html
+   2. Di VSCode, ubah nilai HERO_LOCAL di bagian CONFIG di atas:
+      const HERO_LOCAL = 'hero.jpg';   // ← ganti ini
+   3. Simpan. Selesai!
+
+   Format yang didukung: jpg, png, webp, gif, mp4, webm, ogg
+   Tidak ada upload, tidak ada database — langsung dari file lokal.
 ================================================================ */
 let heroBgType = 'gradient';
-let heroBgData = null;
 
 const setHeroType = type => {
   heroBgType = type;
-  ['gradient','url','upload'].forEach(t => {
+  ['gradient','file'].forEach(t => {
     document.getElementById('htype-' + t)?.classList.toggle('on', t === type);
     const block = document.getElementById('hero-' + t + '-block');
-    if (block) block.style.display = t === type && type !== 'gradient' ? 'block' : 'none';
+    if (block) block.style.display = (t === type && type !== 'gradient') ? 'block' : 'none';
   });
-  if (type === 'gradient') {
-    heroBgData = null;
-    updateHeroBgPreview(null, null);
-  }
+  if (type === 'gradient') updateHeroBgPreview('');
 };
 
-const updateHeroBgPreview = (url, mediaType) => {
+const updateHeroBgPreview = path => {
   const prev = document.getElementById('heroBgPreview');
-  if (!url) {
+  if (!path) {
     prev.innerHTML = '<span class="prev-lbl" id="heroPrevLbl">Gradient Default</span>';
     return;
   }
-  if (mediaType === 'video') {
-    prev.innerHTML = `<video src="${url}" muted autoplay loop playsinline style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"></video>`;
+  const isVid = /\.(mp4|webm|ogg)(\?.*)?$/i.test(path);
+  if (isVid) {
+    prev.innerHTML = `<video src="${path}" muted autoplay loop playsinline style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"></video>`;
   } else {
-    prev.innerHTML = `<img src="${url}" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" alt="preview">`;
+    prev.innerHTML = `<img src="${path}" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" alt="preview" onerror="this.parentElement.innerHTML='<span class=\\'prev-lbl\\'>File tidak ditemukan — pastikan nama & lokasi benar</span>'">`;
   }
 };
 
-const previewHeroBg = () => {
-  const url = document.getElementById('heroUrlInp').value.trim();
-  if (!url) { updateHeroBgPreview(null, null); return; }
-  const isVideo = /\.(mp4|webm|ogg)(\?.*)?$/i.test(url);
-  heroBgData = url;
-  updateHeroBgPreview(url, isVideo ? 'video' : 'image');
+const previewHeroPath = () => {
+  const path = document.getElementById('heroPathInp')?.value.trim() || '';
+  updateHeroBgPreview(path);
 };
 
-const handleHeroFile = input => {
-  const file = input.files[0];
-  if (!file) return;
-  // Batas 4MB untuk base64 agar muat di JSONBin (limit ~10MB per bin)
-  if (file.size > 4 * 1024 * 1024) {
-    showToast('⚠️ File terlalu besar (maks 4MB). Gunakan URL untuk file lebih besar.');
-    input.value = '';
-    return;
-  }
-  const info = document.getElementById('heroUploadInfo');
-  info.textContent = `${file.name} (${(file.size / 1024).toFixed(0)} KB) — akan disimpan ke database`;
-  const reader = new FileReader();
-  reader.onload = e => {
-    heroBgData = e.target.result;
-    const isVideo = file.type.startsWith('video/');
-    updateHeroBgPreview(heroBgData, isVideo ? 'video' : 'image');
-  };
-  reader.readAsDataURL(file);
+const applyHeroLocal = () => {
+  const path = heroBgType === 'gradient'
+    ? ''
+    : (document.getElementById('heroPathInp')?.value.trim() || '');
+  applyHeroBg(path);
+  showToast(path
+    ? `✓ Background "${path}" diterapkan! (sesi ini saja — edit HERO_LOCAL di VSCode untuk permanen)`
+    : '✓ Kembali ke gradient default');
 };
 
-/* ── Simpan hero BG ke database JSONBin ── */
-const saveHeroBg = async () => {
-  if (heroBgType === 'gradient' || !heroBgData) {
-    resetHeroBg();
-    return;
-  }
-
-  // Tentukan media type
-  const isVideo = heroBgType === 'upload'
-    ? /^data:video/i.test(heroBgData)
-    : /\.(mp4|webm|ogg)(\?.*)?$/i.test(heroBgData);
-
-  const bgObj = {
-    type: heroBgType,
-    mediaType: isVideo ? 'video' : 'image',
-    data: heroBgData
-  };
-
-  // Tampilkan progress
-  const statusEl = document.getElementById('heroUploadStatus');
-  const statusTxt = document.getElementById('heroUploadStatusTxt');
-  const barFill = document.getElementById('heroUploadBarFill');
-  statusEl.classList.add('show');
-  statusTxt.textContent = 'Menyimpan background ke database...';
-  barFill.style.width = '30%';
-
-  // Terapkan ke hero sekarang (optimistic)
-  st.heroBg = bgObj;
-  applyHeroBg(bgObj);
-
-  barFill.style.width = '60%';
-
-  // Simpan ke database
-  const ok = await dbSet(st.reviews, st.orders, st.storeOpen, bgObj);
-
-  barFill.style.width = '100%';
-
-  if (ok) {
-    // Cache di localStorage juga
-    try { lsS('mb_hero_cache', JSON.stringify(bgObj)); } catch(e) {}
-    statusTxt.textContent = '✓ Background berhasil disimpan ke database!';
-    setTimeout(() => statusEl.classList.remove('show'), 3000);
-    showToast('✓ Background tersimpan! Semua pengunjung akan melihatnya.');
-  } else {
-    // Rollback jika gagal
-    st.heroBg = null;
-    applyHeroBg(null);
-    statusTxt.textContent = '✗ Gagal menyimpan — cek koneksi & coba lagi';
-    setTimeout(() => statusEl.classList.remove('show'), 4000);
-    showToast('⚠️ Gagal menyimpan ke database. Cek koneksi & API Key.');
-  }
-};
-
-const resetHeroBg = async () => {
-  st.heroBg = null;
-  heroBgData = null;
+const resetHeroBg = () => {
   heroBgType = 'gradient';
-  applyHeroBg(null);
-  loadHeroBgUI();
-  lsS('mb_hero_cache', '');
-
-  showToast('⏳ Mereset background...');
-  const ok = await dbSet(st.reviews, st.orders, st.storeOpen, null);
-  showToast(ok ? '✓ Background direset ke gradient default & tersync' : '✓ Background direset (lokal)');
+  setHeroType('gradient');
+  applyHeroBg('');
+  const inp = document.getElementById('heroPathInp');
+  if (inp) inp.value = '';
+  showToast('✓ Background direset ke gradient default');
 };
 
 /* ── Terapkan hero BG ke halaman ── */
-const applyHeroBg = (bgObj) => {
+const applyHeroBg = path => {
   const hero = document.getElementById('home');
   const bg   = document.getElementById('heroBg');
   const med  = document.getElementById('heroMedia');
-
-  if (!bgObj || !bgObj.data) {
+  if (!path) {
     bg.classList.remove('has-media');
     hero.classList.remove('has-media');
     med.style.display = 'none';
     med.innerHTML = '';
     return;
   }
-
-  const url = bgObj.data;
-  const isVideo = bgObj.mediaType === 'video';
-
+  const isVid = /\.(mp4|webm|ogg)(\?.*)?$/i.test(path);
   bg.classList.add('has-media');
   hero.classList.add('has-media');
   med.style.display = 'block';
-
-  if (isVideo) {
-    med.innerHTML = `<video src="${url}" autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;"></video><div class="hero-media-overlay"></div>`;
+  if (isVid) {
+    med.innerHTML = `<video src="${path}" autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;"></video><div class="hero-media-overlay"></div>`;
   } else {
-    med.innerHTML = `<img src="${url}" alt="hero background" style="width:100%;height:100%;object-fit:cover;" loading="lazy"><div class="hero-media-overlay"></div>`;
+    med.innerHTML = `<img src="${path}" alt="hero background" style="width:100%;height:100%;object-fit:cover;" loading="lazy"><div class="hero-media-overlay"></div>`;
   }
 };
 
-/* ── Load UI admin hero dari state ── */
+/* ── Load UI admin hero ── */
 const loadHeroBgUI = () => {
-  const bgObj = st.heroBg;
-
-  if (!bgObj || !bgObj.data) {
+  if (!HERO_LOCAL) {
     heroBgType = 'gradient';
-    heroBgData = null;
     setHeroType('gradient');
-    updateHeroBgPreview(null, null);
+    updateHeroBgPreview('');
     return;
   }
-
-  heroBgType = bgObj.type;
-  heroBgData = bgObj.data;
-  setHeroType(bgObj.type);
-
-  if (bgObj.type === 'url') {
-    const inp = document.getElementById('heroUrlInp');
-    if (inp) inp.value = bgObj.data;
-  } else if (bgObj.type === 'upload') {
-    const info = document.getElementById('heroUploadInfo');
-    if (info) info.textContent = 'File tersimpan di database ✓';
-  }
-
-  updateHeroBgPreview(bgObj.data, bgObj.mediaType);
+  heroBgType = 'file';
+  setHeroType('file');
+  const inp = document.getElementById('heroPathInp');
+  if (inp) inp.value = HERO_LOCAL;
+  updateHeroBgPreview(HERO_LOCAL);
 };
 
 /* ── NAV & UI HELPERS ── */
@@ -2039,16 +1781,12 @@ const initCounters = () => {
   document.querySelectorAll('[data-count]').forEach(el => obs.observe(el));
 };
 
-/* ── RESIZE: update review carousel ── */
 window.addEventListener('resize', () => {
-  if (st.reviews.length) {
-    renderReviews();
-    rIdx = 0;
-  }
+  if (st.reviews.length) { renderReviews(); rIdx = 0; }
 }, { passive: true });
 
 /* ================================================================
-   INIT — load dari database lalu terapkan heroBg
+   INIT
 ================================================================ */
 async function init() {
   loadLocal();
@@ -2056,37 +1794,22 @@ async function init() {
   renderReviews();
   applyUI();
 
-  // Terapkan hero BG dari cache lokal dulu (instant, tanpa tunggu network)
-  if (st.heroBg && st.heroBg.data) {
-    applyHeroBg(st.heroBg);
-  }
+  // Terapkan hero BG dari HERO_LOCAL (edit di VSCode, tidak perlu database)
+  if (HERO_LOCAL) applyHeroBg(HERO_LOCAL);
 
   initReveal();
   initCounters();
   updCartUI();
 
-  // Fetch dari database (sumber kebenaran utama)
+  // Fetch dari database (reviews, orders, store status)
   const data = await dbGet();
   if (data) {
     if (Array.isArray(data.reviews)) st.reviews = data.reviews;
     if (Array.isArray(data.orders))  st.orders  = data.orders;
-
-    // Status toko dari database
     if (typeof data.storeOpen === 'boolean') {
       st.storeOpen = data.storeOpen;
       lsS('mb_open', String(st.storeOpen));
     }
-
-    // ✅ Hero BG dari database — ini yang menjadi sumber kebenaran utama
-    // Sehingga semua pengunjung melihat background yang sama & tidak hilang saat reload
-    if (data.heroBg !== undefined) {
-      st.heroBg = data.heroBg || null;
-      // Update cache lokal
-      try { lsS('mb_hero_cache', st.heroBg ? JSON.stringify(st.heroBg) : ''); } catch(e) {}
-      // Terapkan ke halaman
-      applyHeroBg(st.heroBg);
-    }
-
     saveLocal();
     renderReviews();
     applyUI();
